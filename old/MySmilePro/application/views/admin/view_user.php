@@ -1,0 +1,146 @@
+<?php include 'include/header.php';
+
+      
+      $id = $this->uri->segment(4);
+     
+        $fetch = $this->admin_common_model->get_where('users',['id'=>$id]);
+        
+         if($fetch[0]['image']){
+          $path = base_url("uploads/images/".$fetch[0]['image']);
+        }else{
+
+          $path = base_url("assets/images/banner/user_b.png");
+
+           }
+        $row = $fetch[0];
+               
+       
+      
+     
+ ?>
+
+    <body class="fixed-left">
+        
+        <!-- Begin page -->
+        <div id="wrapper">
+        
+        <?php include 'include/side_menu.php';?>
+
+      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="pull-left page-title">Welcome !</h4>
+                                <ol class="breadcrumb pull-right">
+                                <li><a href="<?=base_url('admin/view_page/dashboard');?>"><?php $fetch_app_name = $this->admin_common_model->get_where('admin',['id'=>'1']);
+                                echo $fetch_app_name[0]['app_name']; ?></a></li>
+                                    <li><a href="<?=base_url('admin/view_page/user_list');?>">Patient List</a></li>
+                                    <li class="active">View Patient</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Start Widget -->
+                
+<div class="row">
+                            <!-- Basic example -->
+                            <div class="col-md-8">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><h3 class="panel-title">VIEW Patient</h3></div>
+                                    <div class="panel-body">
+                                        
+                                      <?php    if($row['image']){
+          $path = base_url("uploads/images/".$row['image']);
+        }else{
+
+          $path = base_url("assets/images/banner/user_b.png");
+
+           } ?>
+                                        
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> 
+                <img alt="User Pic" src="<?=$path;?>" class="img-circle img-responsive">
+                <a id="<?php echo $row['image'];?>" href="<?=$path111;?>" download="<?php echo $row['image'];?>">Download</a>
+
+                 </div>
+           
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information paddingt">
+                    <tbody>
+
+                      <tr>
+                        <td><strong>First Name:</strong></td>
+                        <td><?=$row['first_name'];?></td>
+                      </tr>
+                      
+                        <tr>
+                        <td><strong>Last Name:</strong></td>
+                        <td><?=$row['last_name'];?></td>
+                      </tr>
+
+                       <tr>
+                        <td><strong>Email Address:</strong></td>
+                        <td><?=$row['email'];?></td>
+                      </tr>
+
+                       <tr>
+                        <td><strong>Phone Number:</strong></td>
+                        <td><?=$row['mobile'];?></td>
+                      </tr>
+
+
+                       <tr>
+                        <td><strong>Available Status:</strong></td>
+                        <td><?=$row['available_status'];?></td>
+                      </tr>
+
+                      
+                     
+
+                       <tr>
+                        <td><strong>Status:</strong></td>
+                        <td><?=$row['status'];?></td>
+                      </tr>
+                     <tr>
+                        <td><strong>Registration Date:</strong></td>
+                        <td><?=$row['date_time'];?></td>
+                      </tr>
+                     
+                     
+                    </tbody>
+                  </table>
+                  
+                </div>
+              </div>
+        
+
+
+                                    </div><!-- panel-body -->
+                                </div> <!-- panel -->
+                            </div> <!-- col-->
+                            
+                        
+                           
+
+                        </div> <!-- End row -->
+
+                    </div> <!-- container -->
+                               
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    2018 © RESA.
+                </footer>
+
+            </div>
+          
+        </div>
+        <!-- END wrapper -->
+
+
+ <?php include 'include/footer.php';?>
